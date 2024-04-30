@@ -1,21 +1,21 @@
 :host {
-    .input-container{
-        display: flex;
-        justify-content: center;
-        gap: 1rem;
-        margin: 100px 0;
-    }
+  .input-container {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 100px 0;
+  }
 
-    input,
-    button {
-        height: 30px;
-    }
+  input,
+  button {
+    height: 30px;
+  }
 
-    input {
-        text-indent: 8px;
-    }
+  input {
+    text-indent: 8px;
+  }
 
-    button:hover{
-        cursor: pointer;
-    }
+  button:hover {
+    cursor: pointer;
+  }
 }
