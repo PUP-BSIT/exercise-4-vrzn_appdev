@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Student } from '../../model/student';
+declare var $: any;
 
 @Component({
   selector: 'app-parent',
@@ -8,8 +9,11 @@ import { Student } from '../../model/student';
 })
 export class ParentComponent {
   students: Student[] = [
-    { studentId: 0, givenName: 'Jhean', lastName: 'Galope', finalGrade: 1.25 },
-    { studentId: 1, givenName: 'Khen', lastName: 'Casane', finalGrade: 1.25 },
+    { studentId: 0, givenName: 'Jhean', lastName: 'Galope', finalGrade: 1.0 },
+    { studentId: 1, givenName: 'Dro', lastName: 'Reyes', finalGrade: 1.25 },
+    { studentId: 2, givenName: 'Adrian', lastName: 'Naoe', finalGrade: 1.5 },
+    { studentId: 3, givenName: 'Mark', lastName: 'Odrunia', finalGrade: 2.5 },
+    { studentId: 4, givenName: 'Harrel', lastName: 'Go', finalGrade: 3.0 },
   ];
 
   newStudent: Student = {
@@ -34,7 +38,8 @@ export class ParentComponent {
   addOrUpdateStudent() {
     if (
       this.newStudent.givenName.length < 2 &&
-      this.newStudent.lastName.length < 2
+      this.newStudent.lastName.length < 2 &&
+      this.newStudent.finalGrade !== null
     ) {
       this.alertMessage =
         'Given name and last name must have at least 2 letters.';
@@ -42,6 +47,8 @@ export class ParentComponent {
       this.alertMessage = 'Given name must have at least 2 letters.';
     } else if (this.newStudent.lastName.length < 2) {
       this.alertMessage = 'Last name must have at least 2 letters.';
+    } else if (this.newStudent.finalGrade === null) {
+      this.alertMessage = 'Please Select Final Grade.';
     }
 
     if (this.alertMessage) {
@@ -81,7 +88,17 @@ export class ParentComponent {
     };
   }
 
-  onUpdate(Students: Student[]){
+  onUpdate(Students: Student[]) {
     console.log(Students);
+  }
+
+  onDelete(alert) {
+    if (alert) {
+      this.message = alert;
+      setTimeout(() => {
+        this.message = null;
+      }, 3000);
+      return;
+    }
   }
 }
