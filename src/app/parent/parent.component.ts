@@ -4,7 +4,7 @@ import { Student } from '../../model/student';
 @Component({
   selector: 'app-parent',
   templateUrl: './parent.component.html',
-  styleUrl: './parent.component.css',
+  styleUrls: ['./parent.component.css'],
 })
 export class ParentComponent {
   students: Student[] = [
@@ -19,17 +19,22 @@ export class ParentComponent {
     finalGrade: null,
   };
 
-  addStudent() {
-    let studentId = this.students.length + 1;
+  isUpdating: boolean = false;
 
-    this.newStudent = {
-      studentId: studentId,
-      givenName: this.newStudent.givenName,
-      lastName: this.newStudent.lastName,
-      finalGrade: this.newStudent.finalGrade,
-    };
-
-    this.students.push(this.newStudent);
+  addOrUpdateStudent() {
+    if (this.newStudent.studentId === null) {
+      let studentId = this.students.length;
+      this.newStudent.studentId = studentId;
+      this.students.push(this.newStudent);
+      this.isUpdating = false;
+    } else {
+      const index = this.students.findIndex(
+        (student) => student.studentId === this.newStudent.studentId
+      );
+      if (index !== -1) {
+        this.students[index] = { ...this.newStudent };
+      }
+    }
 
     this.newStudent = {
       studentId: null,
@@ -44,17 +49,7 @@ export class ParentComponent {
       (student) => student.studentId === studentId
     );
     this.newStudent = { ...this.students[studentToUpdate] };
-  }
-
-  updateStudent() {
-    this.students[this.newStudent.studentId] = { ...this.newStudent };
-
-    this.newStudent = {
-      studentId: null,
-      givenName: '',
-      lastName: '',
-      finalGrade: null,
-    };
+    this.isUpdating = true;
   }
 
   removeStudent(id: number): void {
