@@ -5,10 +5,15 @@
     <p>Records for BSIT 3-1 batch 2025</p>
 </div>
 <div class="input-container">
-    <input type="text" placeholder="Enter Given Name" [(ngModel)]="newStudent.givenName" #givenName="ngModel" required (keypress)="validateInput($event)">
-    <input type="text" placeholder="Enter Last Name" [(ngModel)]="newStudent.lastName" #lastName="ngModel" required (keypress)="validateInput($event)">
+    <input type="text" placeholder="Enter Given Name" 
+        [(ngModel)]="newStudent.givenName" #givenName="ngModel" 
+        required (keypress)="validateInput($event)">
+    <input type="text" placeholder="Enter Last Name" 
+        [(ngModel)]="newStudent.lastName" #lastName="ngModel" 
+        required (keypress)="validateInput($event)">
     <label for="finalGrade">Multimedia Final Grade:</label>
-    <select [(ngModel)]="newStudent.finalGrade" #finalGrade="ngModel" required>
+    <select [(ngModel)]="newStudent.finalGrade" 
+        #finalGrade="ngModel" required>
         <option value="1.00">1.00</option>
         <option value="1.25">1.25</option>
         <option value="1.5">1.5</option>
@@ -19,7 +24,8 @@
         <option value="3.0">3.0</option>
         <option value="5.0">5.0</option>
     </select>
-    <button (click)="addOrUpdateStudent()" [disabled]="!givenName.valid || !lastName.valid || !finalGrade.valid">
+    <button (click)="addOrUpdateStudent()" [disabled]="!givenName.valid || 
+        !lastName.valid || !finalGrade.valid">
         {{ isUpdating ? 'Save Changes' : 'Submit' }}
     </button>
 </div>
@@ -40,9 +46,20 @@
             <td>{{ student.lastName }}</td>
             <td>{{ student.finalGrade }}</td>
             <td>
-                <button (click)="onUpdate(student.studentId)">Update</button>
-                <button (click)="removeStudent(student.studentId)">Remove</button>
+                <button (click)="onUpdate(student.studentId)" 
+                    class="button-update">Update</button>
+                <button (click)="removeStudent(student.studentId)" 
+                    class="button-remove">Remove</button>
             </td>
         </tr>
     </tbody>
 </table>
+
+<div id="myModal" class="modal">
+    <div class="modal-content">
+      <p>Are you sure you want to delete this student?</p>
+      <button id="confirmDelete" (click)="confirmDeletion()">Delete</button>
+      <button id="cancelDelete" (click)="closeModal()">Cancel</button>
+    </div>
+  </div>
+  
