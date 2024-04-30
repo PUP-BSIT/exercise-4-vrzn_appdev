@@ -7,15 +7,9 @@ import { ChildComponent } from './parent/child/child.component';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    ParentComponent,
-    ChildComponent
-  ],
-  imports: [
-    BrowserModule, FormsModule
-  ],
+  declarations: [AppComponent, ParentComponent, ChildComponent],
+  imports: [BrowserModule, FormsModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

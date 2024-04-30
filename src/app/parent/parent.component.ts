@@ -88,10 +88,6 @@ export class ParentComponent {
     };
   }
 
-  onUpdate(Students: Student[]) {
-    console.log(Students);
-  }
-
   onDelete(alert) {
     if (alert) {
       this.message = alert;
