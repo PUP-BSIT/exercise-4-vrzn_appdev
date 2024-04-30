@@ -8,10 +8,7 @@ import { Student } from '../../../model/student';
 })
 export class ChildComponent {
   @Input() students;
-  @Input() newStudent;
-  @Input() isUpdating;
-  @Input() studentToDeleteId;
-  @Input() message;
+  @Output() message = new EventEmitter<String>();
   @Output() studentToUpdate = new EventEmitter<Student>();
   @Output() newStudentsArray = new EventEmitter<Student[]>();
 
@@ -20,17 +17,16 @@ export class ChildComponent {
       (student) => student.studentId === studentId
     );
 
-    this.studentToUpdate.emit(studentToUpdate)
+    this.studentToUpdate.emit(studentToUpdate);
   }
 
   removeStudent(id: number): void {
-     const index = this.students.findIndex(
-       (student) => student.studentId === id
-     );
+    const index = this.students.findIndex(
+      (student) => student.studentId === id
+    );
 
     this.students.splice(index, 1);
-    
-    console.log(this.students);
+    this.message.emit("Student Deleted Successfully.")
     this.newStudentsArray.emit(this.students);
   }
 }
