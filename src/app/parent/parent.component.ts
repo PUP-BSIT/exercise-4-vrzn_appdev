@@ -6,13 +6,10 @@ import { Student } from '../../model/student';
   templateUrl: './parent.component.html',
   styleUrls: ['./parent.component.css'],
 })
-
 export class ParentComponent {
   students: Student[] = [
-    { studentId: 0, givenName: 'Jhean', 
-      lastName: 'Galope', finalGrade: 1.25 },
-    { studentId: 1, givenName: 'Khen', 
-      lastName: 'Casane', finalGrade: 1.25 },
+    { studentId: 0, givenName: 'Jhean', lastName: 'Galope', finalGrade: 1.25 },
+    { studentId: 1, givenName: 'Khen', lastName: 'Casane', finalGrade: 1.25 },
   ];
 
   newStudent: Student = {
@@ -25,6 +22,7 @@ export class ParentComponent {
   isUpdating: boolean = false;
   alertMessage: string | null = null;
   message: string | null = null;
+  studentToDeleteId: number | null = null;
 
   validateInput(event: any) {
     const pattern = /[a-zA-Z]/;
@@ -34,24 +32,26 @@ export class ParentComponent {
   }
 
   addOrUpdateStudent() {
-    if (this.newStudent.givenName.length < 2 && 
-        this.newStudent.lastName.length < 2) {
-      this.alertMessage = 
+    if (
+      this.newStudent.givenName.length < 2 &&
+      this.newStudent.lastName.length < 2
+    ) {
+      this.alertMessage =
         'Given name and last name must have at least 2 letters.';
     } else if (this.newStudent.givenName.length < 2) {
       this.alertMessage = 'Given name must have at least 2 letters.';
     } else if (this.newStudent.lastName.length < 2) {
       this.alertMessage = 'Last name must have at least 2 letters.';
-  }
+    }
 
-  if (this.alertMessage) {
-    this.alertMessage = this.alertMessage;
-    setTimeout(() => {
-      this.alertMessage = null;
-    }, 3000);
-    return;
-  }
-  
+    if (this.alertMessage) {
+      this.alertMessage = this.alertMessage;
+      setTimeout(() => {
+        this.alertMessage = null;
+      }, 3000);
+      return;
+    }
+
     if (this.newStudent.studentId === null) {
       let studentId = this.students.length;
       this.newStudent.studentId = studentId;
@@ -72,7 +72,7 @@ export class ParentComponent {
     setTimeout(() => {
       this.message = null;
     }, 3000);
-  
+
     this.newStudent = {
       studentId: null,
       givenName: '',
@@ -81,44 +81,7 @@ export class ParentComponent {
     };
   }
 
-  onUpdate(studentId: number) {
-    const studentToUpdate = this.students.findIndex(
-      (student) => student.studentId === studentId
-    );
-    this.newStudent = { ...this.students[studentToUpdate] };
-    this.isUpdating = true;
-  }
-
-  studentToDeleteId: number | null = null;
-  
-  removeStudent(id: number): void {
-    const index = this.students.findIndex(
-      (student) => student.studentId === id
-    );
-
-    this.studentToDeleteId = id;
-    this.openModal();
-  }
-
-  confirmDeletion(): void {
-    if (this.studentToDeleteId !== null) {
-      this.students = this.students.filter(student => student.studentId !== this.studentToDeleteId);
-      this.studentToDeleteId = null;
-      this.message = 'Student removed successfully.';
-      setTimeout(() => {
-        this.message = null;
-      }, 3000);
-      this.closeModal();
-    }
-  }
-  
-  openModal() {
-    let modal = document.getElementById('myModal');
-    modal.style.display = 'block';
-  }
-  
-  closeModal() {
-    let modal = document.getElementById('myModal');
-    modal.style.display = 'none';
+  onUpdate(Students: Student[]){
+    console.log(Students);
   }
 }
