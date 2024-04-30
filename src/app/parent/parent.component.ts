@@ -113,12 +113,12 @@ export class ParentComponent {
   }
   
   openModal() {
-    let modal = document.getElementById('myModal');
+    let modal = document.getElementById('my_modal');
     modal.style.display = 'block';
   }
   
   closeModal() {
-    let modal = document.getElementById('myModal');
+    let modal = document.getElementById('my_modal');
     modal.style.display = 'none';
   }
 }
