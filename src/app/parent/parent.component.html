@@ -1,6 +1,10 @@
 <div class="input-container">
-    <input type="text" placeholder="Enter Given Name" [(ngModel)]="newStudent.givenName" #givenName="ngModel" required>
-    <input type="text" placeholder="Enter Last Name" [(ngModel)]="newStudent.lastName" #lastName="ngModel" required>
+    <input type="text" placeholder="Enter Given Name" [(ngModel)]="newStudent.givenName" #givenName="ngModel" required
+        (keypress)="validateInput($event)">
+
+    <input type="text" placeholder="Enter Last Name" [(ngModel)]="newStudent.lastName" #lastName="ngModel" required
+        (keypress)="validateInput($event)">
+
     <label for="finalGrade">Multimedia Final Grade:</label>
     <select [(ngModel)]="newStudent.finalGrade" #finalGrade="ngModel" required>
         <option value="1.00">1.00</option>
