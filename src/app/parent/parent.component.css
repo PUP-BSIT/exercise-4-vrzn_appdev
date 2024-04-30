@@ -136,21 +136,33 @@ button:disabled {
 }
 
 .modal-content {
-  font-size: 18px;
+  font-size: 19px;
   background-color: #fefefe;
-  margin: 15% auto;
-  padding: 20px;
+  margin: 20% auto;
+  padding: 25px;
   border: 1px solid #888;
-  height: 140px;
+  height: 190px;
   width: 40%;
   border-radius: 10px;
 }
 
+.modal-content p {
+  margin-bottom: 3rem;
+}
+
 #confirm_delete {
-  width: 95%;
+  height: 40px;
+  width: 100%;
   background-color: #d9534f;
 }
+
+#cancel_delete {
+  height: 40px;
+  width: 100%;
+}
+
 #candel_delete .close {
+  width: 100%;
   color: #aaa;
   float: right;
   font-size: 28px;
@@ -180,4 +192,10 @@ button:disabled {
     font-size: 14px;
     padding: 6px;
   }
+
+  .modal-content {
+    font-size: 14px;
+    margin-bottom: 1rem;
+  }
+  
 }
