@@ -21,6 +21,13 @@ export class ParentComponent {
 
   isUpdating: boolean = false;
 
+  validateInput(event: any) {
+    const pattern = /[a-zA-Z]/;
+    if (!pattern.test(event.key)) {
+      event.preventDefault();
+    }
+  }
+
   addOrUpdateStudent() {
     if (this.newStudent.studentId === null) {
       let studentId = this.students.length;
