@@ -1,0 +1,15 @@
+<div class="input-container">
+    <input type="text" placeholder="Enter Given Name" [(ngModel)]="newStudent.givenName">
+    <input type="text" placeholder="Enter Last Name" [(ngModel)]="newStudent.lastName">
+    <input type="text" placeholder="Enter Final Grade" [(ngModel)]="newStudent.finalGrade">
+    <button (click)="addStudent()">Submit</button>
+    <button (click)="updateStudent()">Save</button>
+</div>
+
+<div *ngFor="let student of students" class="row">
+    <app-child
+        [student] = student
+    />
+    <button (click)="onUpdate(student.studentId)">Update</button>
+    <button (click)="removeStudent(student.studentId)">Remove</button>
+</div>
