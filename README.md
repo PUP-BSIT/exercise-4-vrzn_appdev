@@ -1,6 +1,12 @@
 # CrudApp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.0.
+This project is a CRUD (Create, Read, Update, Delete) application generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.0.
+
+## Preview
+
+[![CrudApp Preview](https://img.shields.io/badge/Preview-Firebase%20Deployment-orange?style=for-the-badge&logo=firebase)](https://appdev-crud-app.web.app/)
+
+You can access the live preview of the CrudApp [here](https://appdev-crud-app.web.app/).
 
 ## Development server
 
@@ -24,4 +30,8 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 
 ## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+To get more help on the Angular CLI, use `ng help` or check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+---
+
+[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/kVz3ab7T)
