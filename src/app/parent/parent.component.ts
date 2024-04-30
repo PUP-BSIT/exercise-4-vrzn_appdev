@@ -34,22 +34,23 @@ export class ParentComponent {
   }
 
   addOrUpdateStudent() {
-    if (this.newStudent.givenName.length < 2 &&
+    if (this.newStudent.givenName.length < 2 && 
         this.newStudent.lastName.length < 2) {
       this.alertMessage = 
         'Given name and last name must have at least 2 letters.';
-      return;
-    }
-
-    if (this.newStudent.givenName.length < 2) {
+    } else if (this.newStudent.givenName.length < 2) {
       this.alertMessage = 'Given name must have at least 2 letters.';
-      return;
-    }
-  
-    if (this.newStudent.lastName.length < 2) {
+    } else if (this.newStudent.lastName.length < 2) {
       this.alertMessage = 'Last name must have at least 2 letters.';
-      return;
-    }
+  }
+
+  if (this.alertMessage) {
+    this.alertMessage = this.alertMessage;
+    setTimeout(() => {
+      this.alertMessage = null;
+    }, 3000);
+    return;
+  }
   
     if (this.newStudent.studentId === null) {
       let studentId = this.students.length;
@@ -67,6 +68,10 @@ export class ParentComponent {
       }
       this.isUpdating = false;
     }
+
+    setTimeout(() => {
+      this.message = null;
+    }, 3000);
   
     this.newStudent = {
       studentId: null,
@@ -99,6 +104,9 @@ export class ParentComponent {
       };
       this.isUpdating = false;
       this.message = 'Student removed successfully.';
+      setTimeout(() => {
+        this.message = null;
+      }, 3000);
     }
   }
 }
