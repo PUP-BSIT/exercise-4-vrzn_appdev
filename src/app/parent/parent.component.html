@@ -1,38 +1,66 @@
-<div *ngIf="message" class="success-message">{{ message }}</div>
-<div *ngIf="alertMessage" class="alert-message">{{ alertMessage }}</div>
-<div class="main-header">
-    <h2>Multimedia Grading Sheet</h2>
-    <p>Records for BSIT 3-1 batch 2025</p>
-</div>
-<div class="input-container">
-    <input type="text" placeholder="Enter Given Name" 
-        [(ngModel)]="newStudent.givenName" #givenName="ngModel" 
-        required (keypress)="validateInput($event)">
-    <input type="text" placeholder="Enter Last Name" 
-        [(ngModel)]="newStudent.lastName" #lastName="ngModel" 
-        required (keypress)="validateInput($event)">
-    <label for="finalGrade">Multimedia Final Grade:</label>
-    <select [(ngModel)]="newStudent.finalGrade" 
-        #finalGrade="ngModel" required>
-        <option value="1.00">1.00</option>
-        <option value="1.25">1.25</option>
-        <option value="1.5">1.5</option>
-        <option value="2.00">2.00</option>
-        <option value="2.25">2.25</option>
-        <option value="2.5">2.5</option>
-        <option value="2.75">2.75</option>
-        <option value="3.0">3.0</option>
-        <option value="5.0">5.0</option>
-    </select>
-    <button (click)="addOrUpdateStudent()" [disabled]="!givenName.valid || 
-        !lastName.valid || !finalGrade.valid">
-        {{ isUpdating ? 'Save Changes' : 'Submit' }}
-    </button>
-</div>
+<div class="container mt-4">
+  <div *ngIf="message" class="alert alert-success">{{ message }}</div>
+  <div *ngIf="alertMessage" class="alert alert-danger">{{ alertMessage }}</div>
 
-<app-child
+  <div class="container">
+    <h2>Multimedia Grading Sheet</h2>
+    <p>Records for BSIT 3-1 Batch 2025, Second Semester</p>
+  </div>
+
+  <div class="container input-container">
+    <div class="row">
+      <div class="col-md-4">
+        <label for="givenName">First Name</label>
+        <input
+          type="text"
+          class="form-control mb-3"
+          placeholder="Enter Given Name"
+          [(ngModel)]="newStudent.givenName"
+          #givenName="ngModel"
+          required
+          (keypress)="validateInput($event)" />
+      </div>
+      <div class="col-md-4">
+        <label for="lastName">Last Name</label>
+        <input
+          type="text"
+          class="form-control mb-3"
+          placeholder="Enter Last Name"
+          [(ngModel)]="newStudent.lastName"
+          #lastName="ngModel"
+          required
+          (keypress)="validateInput($event)" />
+      </div>
+      <div class="col-md-4">
+        <label for="finalGrade">Final Grade</label>
+        <select
+          class="form-select mb-3"
+          [(ngModel)]="newStudent.finalGrade"
+          #finalGrade="ngModel"
+          required >
+          <option value="null" selected disabled>Select Final Grade</option>
+          <option value="1">1.00</option>
+          <option value="1.25">1.25</option>
+          <option value="1.5">1.50</option>
+          <option value="2">2.00</option>
+          <option value="2.25">2.25</option>
+          <option value="2.5">2.50</option>
+          <option value="2.75">2.75</option>
+          <option value="3">3.00</option>
+          <option value="5">5.00</option>
+        </select>
+      </div>
+    </div>
+    <button
+      class="btn btn-primary"
+      (click)="addOrUpdateStudent()"
+      [disabled]="!givenName.valid || !lastName.valid || !finalGrade.valid" >
+      {{ isUpdating ? "Save Changes" : "Submit" }}
+    </button>
+  </div>
+  <app-child
     [students]="students"
     (studentToUpdate)="newStudent = $event"
     (newStudentsArray)="students = $event"
-/>
-  
+    (message)="onDelete($event)"/>
+</div>
