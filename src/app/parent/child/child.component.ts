@@ -26,7 +26,7 @@ export class ChildComponent {
     );
 
     this.students.splice(index, 1);
-    this.message.emit("Student Deleted Successfully.")
+    this.message.emit('Student Deleted Successfully.');
     this.newStudentsArray.emit(this.students);
   }
 }
