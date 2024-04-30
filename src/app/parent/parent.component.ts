@@ -35,29 +35,35 @@ export class ParentComponent {
       studentId: null,
       givenName: '',
       lastName: '',
-      finalGrade: null 
-	};
+      finalGrade: null,
+    };
   }
 
   onUpdate(studentId: number) {
     const studentToUpdate = this.students.findIndex(
       (student) => student.studentId === studentId
     );
-	this.newStudent = { ...this.students[studentToUpdate] };
+    this.newStudent = { ...this.students[studentToUpdate] };
   }
 
   updateStudent() {
-	this.students[this.newStudent.studentId] = { ...this.newStudent };
+    this.students[this.newStudent.studentId] = { ...this.newStudent };
 
-	this.newStudent = {
-    	studentId: null,
-    	givenName: '',
-    	lastName: '',
-    	finalGrade: null,
-  	};
+    this.newStudent = {
+      studentId: null,
+      givenName: '',
+      lastName: '',
+      finalGrade: null,
+    };
   }
 
-  removeStudent(studentId: number) {
-    this.students.splice(studentId, 1);
+  removeStudent(id: number): void {
+    const index = this.students.findIndex(
+      (student) => student.studentId === id
+    );
+
+    if (index !== -1) {
+      this.students.splice(index, 1);
+    }
   }
 }
