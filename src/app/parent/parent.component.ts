@@ -59,6 +59,13 @@ export class ParentComponent {
 
     if (index !== -1) {
       this.students.splice(index, 1);
+      this.newStudent = {
+        studentId: null,
+        givenName: '',
+        lastName: '',
+        finalGrade: null,
+      };
+      this.isUpdating = false;
     }
   }
 }
