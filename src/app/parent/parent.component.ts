@@ -41,6 +41,7 @@ export class ParentComponent {
       if (index !== -1) {
         this.students[index] = { ...this.newStudent };
       }
+      this.isUpdating = false;
     }
 
     this.newStudent = {
