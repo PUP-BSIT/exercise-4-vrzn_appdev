@@ -1,3 +1,5 @@
+<div *ngIf="message" class="success-message">{{ message }}</div>
+<div *ngIf="alertMessage" class="alert-message">{{ alertMessage }}</div>
 <div class="input-container">
     <input type="text" placeholder="Enter Given Name" [(ngModel)]="newStudent.givenName" #givenName="ngModel" required
         (keypress)="validateInput($event)">
