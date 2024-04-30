@@ -6,10 +6,13 @@ import { Student } from '../../model/student';
   templateUrl: './parent.component.html',
   styleUrls: ['./parent.component.css'],
 })
+
 export class ParentComponent {
   students: Student[] = [
-    { studentId: 0, givenName: 'Jhean', lastName: 'Galope', finalGrade: 1.25 },
-    { studentId: 1, givenName: 'Khen', lastName: 'Casane', finalGrade: 1.25 },
+    { studentId: 0, givenName: 'Jhean', 
+      lastName: 'Galope', finalGrade: 1.25 },
+    { studentId: 1, givenName: 'Khen', 
+      lastName: 'Casane', finalGrade: 1.25 },
   ];
 
   newStudent: Student = {
@@ -31,10 +34,13 @@ export class ParentComponent {
   }
 
   addOrUpdateStudent() {
-    if (this.newStudent.givenName.length < 2 && this.newStudent.lastName.length < 2) {
-      this.alertMessage = 'Given name and last name must have at least 2 letters.';
+    if (this.newStudent.givenName.length < 2 &&
+        this.newStudent.lastName.length < 2) {
+      this.alertMessage = 
+        'Given name and last name must have at least 2 letters.';
       return;
     }
+
     if (this.newStudent.givenName.length < 2) {
       this.alertMessage = 'Given name must have at least 2 letters.';
       return;
