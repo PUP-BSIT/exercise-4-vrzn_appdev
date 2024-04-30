@@ -1,10 +1,12 @@
+<div *ngIf="message" class="success-message">{{ message }}</div>
+<div *ngIf="alertMessage" class="alert-message">{{ alertMessage }}</div>
+<div class="main-header">
+    <h2>Multimedia Grading Sheet</h2>
+    <p>Records for BSIT 3-1 batch 2025</p>
+</div>
 <div class="input-container">
-    <input type="text" placeholder="Enter Given Name" [(ngModel)]="newStudent.givenName" #givenName="ngModel" required
-        (keypress)="validateInput($event)">
-
-    <input type="text" placeholder="Enter Last Name" [(ngModel)]="newStudent.lastName" #lastName="ngModel" required
-        (keypress)="validateInput($event)">
-
+    <input type="text" placeholder="Enter Given Name" [(ngModel)]="newStudent.givenName" #givenName="ngModel" required (keypress)="validateInput($event)">
+    <input type="text" placeholder="Enter Last Name" [(ngModel)]="newStudent.lastName" #lastName="ngModel" required (keypress)="validateInput($event)">
     <label for="finalGrade">Multimedia Final Grade:</label>
     <select [(ngModel)]="newStudent.finalGrade" #finalGrade="ngModel" required>
         <option value="1.00">1.00</option>
@@ -21,9 +23,26 @@
         {{ isUpdating ? 'Save Changes' : 'Submit' }}
     </button>
 </div>
-
-<div *ngFor="let student of students" class="row">
-    <app-child [student]=student />
-    <button (click)="onUpdate(student.studentId)">Update</button>
-    <button (click)="removeStudent(student.studentId)">Remove</button>
-</div>
+<table class="students-table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Given Name</th>
+            <th>Last Name</th>
+            <th>Final Grade</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let student of students">
+            <td>{{ student.studentId }}</td>
+            <td>{{ student.givenName }}</td>
+            <td>{{ student.lastName }}</td>
+            <td>{{ student.finalGrade }}</td>
+            <td>
+                <button (click)="onUpdate(student.studentId)">Update</button>
+                <button (click)="removeStudent(student.studentId)">Remove</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
