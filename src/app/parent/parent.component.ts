@@ -89,24 +89,36 @@ export class ParentComponent {
     this.isUpdating = true;
   }
 
+  studentToDeleteId: number | null = null;
+  
   removeStudent(id: number): void {
     const index = this.students.findIndex(
       (student) => student.studentId === id
     );
 
-    if (index !== -1) {
-      this.students.splice(index, 1);
-      this.newStudent = {
-        studentId: null,
-        givenName: '',
-        lastName: '',
-        finalGrade: null,
-      };
-      this.isUpdating = false;
+    this.studentToDeleteId = id;
+    this.openModal();
+  }
+
+  confirmDeletion(): void {
+    if (this.studentToDeleteId !== null) {
+      this.students = this.students.filter(student => student.studentId !== this.studentToDeleteId);
+      this.studentToDeleteId = null;
       this.message = 'Student removed successfully.';
       setTimeout(() => {
         this.message = null;
       }, 3000);
+      this.closeModal();
     }
+  }
+  
+  openModal() {
+    let modal = document.getElementById('myModal');
+    modal.style.display = 'block';
+  }
+  
+  closeModal() {
+    let modal = document.getElementById('myModal');
+    modal.style.display = 'none';
   }
 }
