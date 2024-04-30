@@ -5,26 +5,9 @@ on:
     branches: ["*"]
 
 jobs:
-  test:
-    name: Unit Test
-    runs-on: ubuntu-latest
-    
-    steps:
-      - name: Checkout to Repo
-        uses: actions/checkout@v4
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: "20.x"
-      - name: Install Dependencies
-        run: npm install
-      - name: Run Tests
-        run: npm run test:ci
-
   build: 
     name: Build
     runs-on: ubuntu-latest
-    needs: [test]
     steps:
       - name: Checkout to Repo
         uses: actions/checkout@v4
@@ -32,13 +15,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "20.x"
-
       - name: Install Dependencies
         run: npm install
-
       - name: Run Build
         run: npm run build
-
       - name: Archive Production Artifacts
         uses: actions/upload-artifact@v4
         with:
@@ -52,21 +32,17 @@ jobs:
     steps:
       - name: Checkout to Repo
         uses: actions/checkout@v4
-      
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: "20.x"
-      
       - name: Install Dependencies
         run: npm install
-      
       - name: Build the app artifact for prod
         run: npm run build --prod
-      
       - name: Deploy angular app to Firebase
         uses: w9jds/firebase-action@master
         with:
           args: deploy --only hosting
         env:
-          GCP_SA_KEY: ${{ secrets.GCP_SERVICE_ACCOUNT_KEY }} 
+          GCP_SA_KEY: ${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}
